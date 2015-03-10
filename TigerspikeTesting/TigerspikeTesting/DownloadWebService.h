@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "TSModel.h"
 
+
 @interface DownloadWebService : NSObject<NSURLConnectionDataDelegate>
 @property (nonatomic, strong) TSModel *tsmodel;
 @property (nonatomic, strong) NSArray *tsArray;
--(void)getJsonDataFromInternet;
+
+-(NSArray *)getJsonDataFromInternet;
 -(NSArray *)JSONKeyPathsByPropertyKey:(NSDictionary *) dic;
+
 @end

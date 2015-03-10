@@ -16,7 +16,7 @@
     return self;
 }
 
--(void)getJsonDataFromInternet {
+-(NSArray *)getJsonDataFromInternet {
     //https://api.myjson.com/bins/2ukm9
     
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://api.myjson.com/bins/2ukm9"]];
@@ -42,14 +42,13 @@
             return;
         }
         // now you can use your `dictionary` object
-        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:[dictionary allValues]];
         NSLog(@"all values %@: ",[dictionary allValues]);
         self.tsArray = [self JSONKeyPathsByPropertyKey: dictionary];
     }];
+    return self.tsArray;
 }
 
--(NSArray *)JSONKeyPathsByPropertyKey:(NSDictionary *)dic {
-    TSModel * tsmodel = [[TSModel alloc] init];
+- (NSArray *)JSONKeyPathsByPropertyKey:(NSDictionary *)dic {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     NSDictionary *helperArray = [[NSDictionary alloc] init];
     helperArray = [[dic allValues] firstObject] ;
@@ -57,13 +56,20 @@
         TSModel * tsmodel = [[TSModel alloc] init];
         tsmodel.name = [item objectForKey:@"name"];
         tsmodel.url = [item objectForKey:@"url"];
-        tsmodel.iconImage = [item objectForKey:@"icon"];
+        tsmodel.iconImage =[self getIconImg:[item objectForKey:@"icon"]];
         
         [result addObject:tsmodel];
     }
     
     self.tsmodel = [result copy];
     return self.tsArray;
+}
+
+- (NSString *)getIconImg:(NSString *)iconImgUrl {
+    NSRange startRange = [iconImgUrl rangeOfString:@"assets/"];
+    
+    NSRange searchRange = NSMakeRange(startRange.location + startRange.length, iconImgUrl.length - startRange.length - startRange.location);
+    return [NSString stringWithString :[iconImgUrl substringWithRange:searchRange]];
 }
 
 @end

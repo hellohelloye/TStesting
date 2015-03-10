@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DownloadWebService.h"
+#import "TSCustomTVC.h"
 
 @interface TSViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) DownloadWebService *dws;
 
 @end

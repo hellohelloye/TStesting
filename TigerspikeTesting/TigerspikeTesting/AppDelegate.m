@@ -16,15 +16,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
-    [[DownloadWebService alloc] getJsonDataFromInternet];
-    
+  //  [[DownloadWebService alloc] getJsonDataFromInternet];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.tsvc = [[TSViewController alloc] init];
-    self.window.rootViewController = self.tsvc;
+    
+    TSViewController *tsvc = [[TSViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:tsvc];
     [self.window makeKeyAndVisible];
 
     return YES;

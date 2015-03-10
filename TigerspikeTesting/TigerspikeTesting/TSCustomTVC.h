@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TSCustomTVC : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (nonatomic, strong) IBOutlet UIButton *iconImageBtn;
 
 @end

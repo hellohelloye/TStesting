@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TSModel : NSObject
+
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *iconImage;
 @property (nonatomic, strong) NSString *url;
